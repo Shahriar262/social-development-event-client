@@ -1,36 +1,47 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa6";
 import { toast } from "react-toastify";
 import { AuthContext } from "../Context/AuthContext";
 
-
 const Register = () => {
-     const { createUser, updateUserProfile, signInWithGoogle } = useContext(AuthContext);
+  const { createUser, updateUserProfile, signInWithGoogle } =
+    useContext(AuthContext);
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
     const displayName = event.target.displayName.value;
     const photoURL = event.target.photoURL.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    // toast.loading("Creating user...", { id: "create-user" });
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters long!");
+      return;
+    }
+    if (!/[A-Z]/.test(password)) {
+      toast.error("Password must contain at least one uppercase letter!");
+      return;
+    }
+    if (!/[a-z]/.test(password)) {
+      toast.error("Password must contain at least one lowercase letter!");
+      return;
+    }
 
-    createUser(email, password)
-      .then((result) => {
-        console.log(result.user);
-
-        // addUserTodb({...result.user, displayName, photoURL})
-
-        updateUserProfile(displayName, photoURL)
-        toast.success("User created successfully!", { id: "create-user" });
-      })
-      .catch((error) => {
-        console.log(error);
-        toast.error(error.message, { id: "create-user" });
-      });
+    try {
+    setLoading(true);
+    const result = await createUser(email, password);
+    await updateUserProfile(displayName, photoURL);
+    toast.success("User registered successfully!");
+    navigate("/auth/login");
+  } catch (error) {
+    console.error(error);
+    toast.error(error.message);
+  } finally {
+    setLoading(false);
+  }
   };
 
   const handleGoogleSignIn = () => {
@@ -47,32 +58,32 @@ const Register = () => {
       });
   };
 
-//   const addUserTodb = async (user) => {
-//     const userData = {
-//       uid: user.uid,
-//       displayName: user.displayName,
-//       photoURL: user.photoURL,
-//       email: user.email,
-//     }
-//     try {
-//       const res = await fetch("https://m10-cs.vercel.app/users", {
-//         method: "POST",
-//         headers: {
-//           "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify(userData),
-//       });
+  //   const addUserTodb = async (user) => {
+  //     const userData = {
+  //       uid: user.uid,
+  //       displayName: user.displayName,
+  //       photoURL: user.photoURL,
+  //       email: user.email,
+  //     }
+  //     try {
+  //       const res = await fetch("https://m10-cs.vercel.app/users", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify(userData),
+  //       });
 
-//       const data = await res.json();
+  //       const data = await res.json();
 
-//       console.log(data);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
 
-    return (
-       <div className="card bg-base-100 border border-gray-200 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
+  return (
+    <div className="card bg-base-100 border border-gray-200 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <h1 className="text-3xl font-bold text-center">Register</h1>
         <form onSubmit={handleRegister}>
@@ -84,6 +95,7 @@ const Register = () => {
               name="displayName"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Name"
+              required
             />
 
             <label className="label">PhotoURL</label>
@@ -92,6 +104,7 @@ const Register = () => {
               name="photoURL"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Photo URL"
+              required
             />
             {/* email field */}
             <label className="label">Email</label>
@@ -100,6 +113,7 @@ const Register = () => {
               name="email"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Email"
+              required
             />
             {/* password field */}
             <label className="label">Password</label>
@@ -108,12 +122,13 @@ const Register = () => {
               name="password"
               className="input rounded-full focus:border-0 focus:outline-gray-200"
               placeholder="Password"
+              required
             />
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
-              Register
+            <button disabled={loading} className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
+             {loading ? "Registering..." : "Register"}
             </button>
           </fieldset>
         </form>
@@ -133,7 +148,7 @@ const Register = () => {
         </p>
       </div>
     </div>
-    );
+  );
 };
 
 export default Register;

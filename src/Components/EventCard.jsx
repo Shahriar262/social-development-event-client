@@ -7,15 +7,15 @@ const EventCard = ({ event }) => {
     title,
     thumbnailUrl,
     eventType,
-    description,
     _id,
     createdBy,
+    eventDate,
     location,
   } = event;
 
   return (
     <div>
-      <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-[420px] flex flex-col">
+      <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-[430px] flex flex-col">
         {/* fixed image container */}
         <figure className="w-full aspect-[16/9] overflow-hidden">
           <img
@@ -33,7 +33,7 @@ const EventCard = ({ event }) => {
               <span className="px-3 py-0.5 text-xs font-medium bg-pink-100 text-pink-600 rounded-full">
                 {eventType}
               </span>
-              <span className="flex items-center gap-2 px-3 py-1 mt-3 text-xs font-medium bg-gray-100 text-gray-600 rounded-full max-w-[80%] truncate">
+              <span className="flex items-center gap-1 px-3 py-1 mt-3 text-xs font-medium bg-gray-100 text-gray-600 rounded-full max-w-[80%] truncate">
                 <IoLocationOutline className="text-gray-500" />
                 {location}
               </span>
@@ -43,10 +43,14 @@ const EventCard = ({ event }) => {
               Added By: <b>{createdBy}</b>
             </div>
 
-            <p className="line-clamp-1 text-sm mt-3">{description}</p>
+            <div className="text-xs text-pink-500 mt-3">
+              Event Date: <b>{eventDate}</b>
+            </div>
+
+            
           </div>
 
-          <div className="card-actions justify-end mt-4">
+          <div className="card-actions justify-end mt-2">
             <Link
               className="btn rounded-full bg-gradient-to-r from-pink-500 to-red-600 hover:from-red-600 hover:to-pink-500 text-white w-full btn-sm"
             >
