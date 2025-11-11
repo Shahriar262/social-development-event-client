@@ -35,16 +35,16 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">ServeBangla</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            <a className="font-semibold">Home</a>
           </li>
           
           <li>
-            <a>Upcoming Events</a>
+            <a className="font-semibold">Upcoming Events</a>
           </li>
         </ul>
       </div>
