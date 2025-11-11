@@ -1,2 +1,8 @@
+*{
+    font-family: "Inter", sans-serif;
+}
+
+
+
 @import "tailwindcss";
 @plugin "daisyui";

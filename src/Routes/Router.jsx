@@ -44,11 +44,11 @@ export const router = createBrowserRouter([
         element: <ManageEvent />,
       },
       {
-        path: "/login",
+        path: "/auth/login",
         element: <Login />,
       },
       {
-        path: "/register",
+        path: "/auth/register",
         element: <Register />,
       },
     ],
