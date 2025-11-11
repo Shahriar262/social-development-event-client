@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
+  const { user, signOutUser } = useContext(AuthContext);
+
   return (
     <div className="navbar bg-base-100 shadow-sm md:px-[120px]">
       <div className="navbar-start">
@@ -30,7 +33,7 @@ const Navbar = () => {
             <li>
               <a>Home</a>
             </li>
-           
+
             <li>
               <a>Upcoming Events</a>
             </li>
@@ -41,16 +44,61 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to={'/'} className="font-semibold text-[15px]">Home</Link>
+            <Link to={"/"} className="font-semibold text-[15px]">
+              Home
+            </Link>
           </li>
-          
+
           <li>
-            <Link to={'/upcoming-event'} className="font-semibold text-[15px]">Upcoming Events</Link>
+            <Link to={"/upcoming-event"} className="font-semibold text-[15px]">
+              Upcoming Events
+            </Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/auth/login'} className="btn">Login</Link>
+        {!user ? (
+          <Link to="/auth/login" className="btn">
+            Login
+          </Link>
+        ) : (
+          <div className="dropdown dropdown-end">
+            <div
+              tabIndex={0}
+              className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
+              data-tip={user.displayName || "User"}
+            >
+              <div className="w-10 rounded-full border border-gray-300">
+                <img
+                  src={
+                    user.photoURL ||
+                    "https://i.ibb.co/0jVpZVV/default-avatar.png"
+                  }
+                  alt="Profile"
+                />
+              </div>
+            </div>
+
+            {/* Dropdown menu */}
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              <li>
+                <Link to="/create-event">Create Event</Link>
+              </li>
+              <li>
+                <Link to="/manage-event">Manage Events</Link>
+              </li>
+              <li>
+                <Link to="/join-event">Joined Events</Link>
+              </li>
+              <li>
+                <button onClick={signOutUser}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );

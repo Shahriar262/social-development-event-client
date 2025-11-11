@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router";
-import { AuthContext } from "../../context/AuthContext";
 import { FaGoogle } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import { AuthContext } from "../Context/AuthContext";
 
 
 const Register = () => {
@@ -16,13 +16,13 @@ const Register = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    toast.loading("Creating user...", { id: "create-user" });
+    // toast.loading("Creating user...", { id: "create-user" });
 
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
 
-        addUserTodb({...result.user, displayName, photoURL})
+        // addUserTodb({...result.user, displayName, photoURL})
 
         updateUserProfile(displayName, photoURL)
         toast.success("User created successfully!", { id: "create-user" });
@@ -38,7 +38,7 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         toast.success("User created successfully!", { id: "create-user" });
-        addUserTodb(result.user);
+        // addUserTodb(result.user);
         navigate("/");
       })
       .catch((error) => {
@@ -47,29 +47,29 @@ const Register = () => {
       });
   };
 
-  const addUserTodb = async (user) => {
-    const userData = {
-      uid: user.uid,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      email: user.email,
-    }
-    try {
-      const res = await fetch("https://m10-cs.vercel.app/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userData),
-      });
+//   const addUserTodb = async (user) => {
+//     const userData = {
+//       uid: user.uid,
+//       displayName: user.displayName,
+//       photoURL: user.photoURL,
+//       email: user.email,
+//     }
+//     try {
+//       const res = await fetch("https://m10-cs.vercel.app/users", {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(userData),
+//       });
 
-      const data = await res.json();
+//       const data = await res.json();
 
-      console.log(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+//       console.log(data);
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
 
     return (
        <div className="card bg-base-100 border border-gray-200 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
