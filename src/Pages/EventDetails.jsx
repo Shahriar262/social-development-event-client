@@ -1,62 +1,111 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { AuthContext } from '../Context/AuthContext';
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const EventDetails = () => {
-    const {id} = useParams()
-    const [event, setEvent] = useState(null)
-    const [loading, setLoading] = useState(true)
-    const {user} = useContext(AuthContext)
+  const { id } = useParams();
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
+  const [joining, setJoining] = useState(false);
+  const { user } = useContext(AuthContext);
 
-    useEffect(() => {
+  useEffect(() => {
     fetch(`http://localhost:5000/events/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         setEvent(data.result);
         setLoading(false);
       })
       .catch(() => setLoading(false));
   }, [id]);
 
-    if (loading)
+  const handleJoin = () => {
+    if (!user?.email) {
+      toast.error("You must logged in to join event!");
+      navigate("/auth/login")
+      return;
+    }
+    setJoining(true);
+
+    fetch("http://localhost:5000/join-event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventId: id,
+        userEmail: user.email,
+        eventTitle: event.title,
+        eventLocation: event.location,
+        thumbnailUrl: event.thumbnailUrl,
+      }),
+    }).then(res => res.json())
+    .then((data) =>{
+        setJoining(false)
+        if(data.success){
+            toast.success("Successfully joined this event!")
+        }else{
+            toast.error(data.message || "Failed to join event.")
+        }
+    }) .catch((err) => {
+        setJoining(false);
+        toast.error("Something went wrong. Try again!");
+        console.error(err);
+      });
+
+
+  };
+
+  if (loading)
     return (
-      <p className="text-center mt-10 font-semibold text-xl">Loading event...</p>
+      <p className="text-center mt-10 font-semibold text-xl">
+        Loading event...
+      </p>
     );
 
-    if (!event)
+  if (!event)
     return <p className="text-center mt-10 text-gray-600">Event not found</p>;
 
-    return (
-        <div className="max-w-3xl mx-auto mt-10 bg-white shadow rounded-xl p-6">
+  return (
+    <div className="max-w-3xl mx-auto mt-10 bg-white shadow rounded-xl p-6">
       <img
         src={event?.thumbnailUrl}
         alt={event?.title}
         className="w-full h-64 object-cover rounded-lg"
       />
       <h2 className="text-2xl font-bold mt-4">{event?.title}</h2>
-      <p className="mt-2"><strong>Description:</strong> {event?.description}</p>
-      <p className="mt-2"><strong>Created By:</strong> {event?.createdBy}</p>
+      <p className="mt-2">
+        <strong>Description:</strong> {event?.description}
+      </p>
+      <p className="mt-2">
+        <strong>Created By:</strong> {event?.createdBy}
+      </p>
       <p className="mt-2">
         <strong>Location:</strong> {event?.location}
       </p>
-      <p className='mt-2'>
+      <p className="mt-2">
         <strong>Date:</strong>{" "}
         {new Date(event?.eventDate).toLocaleDateString("en-CA")}
       </p>
-      <p className='mt-2'>
+      <p className="mt-2">
         <strong>Type:</strong> {event?.eventType}
       </p>
 
       <button
-        // onClick={handleJoin}
-        className="mt-5 bg-green-600 text-white px-5 py-2 rounded-lg hover:bg-green-700"
+        onClick={handleJoin}
+        disabled={joining}
+        className={`mt-5 px-5 py-2 rounded-lg text-white w-full ${
+          joining ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+        }`}
       >
-        Join Event
+        {joining ? "Joining..." : "Join Event"}
       </button>
     </div>
-    );
+  );
 };
 
 export default EventDetails;
