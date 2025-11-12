@@ -127,7 +127,7 @@ const CreateEvent = () => {
             <DatePicker
               selected={eventDate}
               onChange={(date) => setEventDate(date)}
-              minDate={new Date()}
+              minDate={new Date(Date.now() + 24 * 60 * 60 * 1000)}
               dateFormat="yyyy-MM-dd"
               placeholderText="Select event date"
               className="input w-full rounded-full focus:border-0 focus:outline-gray-200"

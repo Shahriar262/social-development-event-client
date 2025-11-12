@@ -44,17 +44,17 @@ const EventCard = ({ event }) => {
             </div>
 
             <div className="text-xs text-pink-500 mt-3">
-              Event Date: <b>{eventDate}</b>
+              Event Date: <b>{new Date(eventDate).toLocaleDateString("en-CA")}</b>
             </div>
 
             
           </div>
 
           <div className="card-actions justify-end mt-2">
-            <Link
+            <Link to={`/event-details/${_id}`}
               className="btn rounded-full bg-gradient-to-r from-pink-500 to-red-600 hover:from-red-600 hover:to-pink-500 text-white w-full btn-sm"
             >
-              View
+              View Event
             </Link>
           </div>
         </div>
