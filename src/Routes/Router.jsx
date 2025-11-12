@@ -46,7 +46,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/update-event/:id",
-        element: <UpdateEvent />,
+        element: (
+          <PrivateRoute>
+            <UpdateEvent />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/manage-event",

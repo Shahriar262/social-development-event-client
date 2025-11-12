@@ -42,7 +42,7 @@ const JoinedEvent = () => {
         {joinedEvents.map((event) => (
           <div
             key={event._id}
-            className="bg-white shadow-md rounded-xl p-4 flex flex-col justify-between"
+            className="bg-white shadow-md rounded-xl p-4 flex flex-col justify-between hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
           >
             <img
               src={event.thumbnailUrl}
