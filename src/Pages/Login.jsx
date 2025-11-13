@@ -2,6 +2,7 @@ import {  useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Context/AuthContext";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInUser, signInWithGoogle } = useContext(AuthContext);
@@ -20,10 +21,12 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         event.target.reset();
+        toast.success("Logged in successfully!");
         navigate(location.state || "/");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Login failed! Please check your credentials.");
       });
   };
 

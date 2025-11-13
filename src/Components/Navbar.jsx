@@ -4,6 +4,7 @@ import { AuthContext } from "../Context/AuthContext";
 import { FaHome } from "react-icons/fa";
 import { MdLogin, MdLogout, MdUpcoming } from "react-icons/md";
 import logoImg from "../assets/logo.png";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -17,6 +18,16 @@ const Navbar = () => {
 
   const handleTheme = (checked) => {
     setTheme(checked ? "dark" : "light");
+  };
+
+   const handleLogout = () => {
+    signOutUser()
+      .then(() => {
+        toast.success("Logged out successfully!");
+      })
+      .catch(() => {
+        toast.error("Failed to log out!");
+      });
   };
 
   return (
@@ -129,7 +140,7 @@ const Navbar = () => {
               </li>
               <li className="lg:hidden">
                 <button
-                  onClick={signOutUser}
+                  onClick={handleLogout}
                   className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] w-full text-white"
                 >
                   <MdLogout /> Logout
@@ -137,7 +148,7 @@ const Navbar = () => {
               </li>
             </ul>
             <button
-              onClick={signOutUser}
+              onClick={handleLogout}
               className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] rounded-lg text-white text-sm ml-4 hidden lg:inline-flex"
             >
               <MdLogout /> Logout
