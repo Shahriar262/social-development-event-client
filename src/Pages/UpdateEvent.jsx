@@ -55,7 +55,13 @@ const UpdateEvent = () => {
     }
   };
 
-  if (loading) return <p className="text-center mt-10">Loading event...</p>;
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center h-[80vh]">
+        <span className="loading loading-dots loading-xl"></span>
+      </div>
+    );
+  }
   if (!event) return <p className="text-center mt-10">Event not found</p>;
 
   return (
