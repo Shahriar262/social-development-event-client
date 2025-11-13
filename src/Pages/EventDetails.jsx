@@ -60,12 +60,13 @@ const EventDetails = () => {
       });
   };
 
-  if (loading)
+  if (loading) {
     return (
-      <p className="text-center mt-10 font-semibold text-xl">
-        Loading event...
-      </p>
+      <div className="flex items-center justify-center h-[80vh]">
+        <span className="loading loading-dots loading-xl"></span>
+      </div>
     );
+  }
 
   if (!event)
     return <p className="text-center mt-10 text-gray-600">Event not found</p>;
@@ -79,20 +80,20 @@ const EventDetails = () => {
       />
       <h2 className="text-2xl font-bold mt-4">{event?.title}</h2>
       <p className="mt-2">
-        <strong>Description:</strong>  {event?.description}
+        <strong>Description:</strong> {event?.description}
       </p>
       <p className="mt-2">
-        <strong>Created By:</strong>  {event?.createdBy}
+        <strong>Created By:</strong> {event?.createdBy}
       </p>
       <p className="mt-2">
-        <strong>Location:</strong>  {event?.location}
+        <strong>Location:</strong> {event?.location}
       </p>
       <p className="mt-2">
         <strong>Date:</strong>{" "}
-         {new Date(event?.eventDate).toLocaleDateString("en-CA")}
+        {new Date(event?.eventDate).toLocaleDateString("en-CA")}
       </p>
       <p className="mt-2">
-        <strong>Event Type:</strong>  {event?.eventType}
+        <strong>Event Type:</strong> {event?.eventType}
       </p>
 
       <button

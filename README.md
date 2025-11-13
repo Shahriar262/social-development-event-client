@@ -1,6 +1,6 @@
 # 🌍 ServeBangla — Social Development Events Platform  
 
-**Live Site:** 🔗 [Click Here](https://social-event-client-shahriar262.netlify.app/)
+**Live Site:** 🔗 [https://social-event-client-shahriar262.netlify.app/](https://social-event-client-shahriar262.netlify.app/)
 
 
 

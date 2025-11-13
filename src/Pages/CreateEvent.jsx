@@ -60,6 +60,7 @@ const CreateEvent = () => {
       });
   };
 
+
   return (
     <div className="card bg-base-100 mt-10 w-[95%] md:w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
