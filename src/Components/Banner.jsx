@@ -17,9 +17,18 @@ const Banner = () => {
   };
 
   const banners = [
-    { img: "/images/banner1.jpg", title: "Make a Difference Today" },
-    { img: "/images/banner2.jpg", title: "Join Local Community Events" },
-    { img: "/images/banner3.jpg", title: "Be the Change You Want to See" },
+    {
+      img: "https://res.cloudinary.com/dtxtatusv/image/upload/v1763011849/Non-Profit-Fabric-Banner-Template-edit-online_aw34le.png",
+      title: "Make a Difference Today",
+    },
+    {
+      img: "https://res.cloudinary.com/dtxtatusv/image/upload/v1763012629/tp39-ae-facebookad-03_e1fdyj.jpg",
+      title: "Join Local Community Events",
+    },
+    {
+      img: "https://res.cloudinary.com/dtxtatusv/image/upload/v1763014442/International-Volunteer-Day-2023-1024x512_y7p4st.jpg",
+      title: "International volunteers day image",
+    },
   ];
 
   return (
@@ -32,7 +41,7 @@ const Banner = () => {
               alt={b.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            {/* <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -44,10 +53,19 @@ const Banner = () => {
                   Explore Events
                 </button>
               </motion.div>
-            </div>
+            </div> */}
           </div>
         ))}
       </Slider>
+
+      <style jsx>{`
+        .slick-dots li button:before {
+          color: gray; /* all dots color */
+        }
+        .slick-dots li.slick-active button:before {
+          color: green; /* active dot color, Tailwind pink-500 */
+        }
+      `}</style>
     </section>
   );
 };
