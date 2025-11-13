@@ -57,6 +57,9 @@ const ManageEvent = () => {
             <p className="text-sm mt-2">
               <strong>Location:</strong> {event.location}
             </p>
+            <p className="mt-2">
+              <strong>Created By:</strong> {event?.createdBy}
+            </p>
             <p className="text-sm font-medium mt-2">
               <strong>Event Date:</strong>{" "}
               {new Date(event.eventDate).toLocaleDateString("en-CA")}
