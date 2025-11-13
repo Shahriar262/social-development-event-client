@@ -1,20 +1,23 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
+import { FaHome } from "react-icons/fa";
+import { MdLogin, MdLogout, MdUpcoming } from "react-icons/md";
+import logoImg from "../assets/logo.png";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
-  useEffect(()=> {
-    const html = document.querySelector("html")
-    html.setAttribute("data-theme", theme)
-    localStorage.setItem("theme", theme)
-  }, [theme])
+  useEffect(() => {
+    const html = document.querySelector("html");
+    html.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
-  const handleTheme = (checked)=>{
-    setTheme(checked ? "dark" : "light")
-  }
+  const handleTheme = (checked) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm md:px-[120px]">
@@ -42,27 +45,36 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Home</a>
+              <Link to={"/"}>Home</Link>
             </li>
 
             <li>
-              <a>Upcoming Events</a>
+              <Link to={"/upcoming-event"}>Upcoming Events</Link>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">ServeBangla</a>
+        <div className="flex items-center gap-2">
+          <img
+            src={logoImg}
+            className="w-8 h-8 md:w-9 md:h-9 rounded-full"
+            alt=""
+          />
+          <a className="md:text-xl font-bold">
+            Serve<span className="text-purple-700">Bangla</span>
+          </a>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link to={"/"} className="font-semibold text-[15px]">
-              Home
+            <Link to={"/"} className="font-semibold text-[15px] mr-2">
+              <FaHome /> Home
             </Link>
           </li>
 
           <li>
             <Link to={"/upcoming-event"} className="font-semibold text-[15px]">
-              Upcoming Events
+              <MdUpcoming /> Upcoming Events
             </Link>
           </li>
         </ul>
@@ -70,15 +82,18 @@ const Navbar = () => {
       <div className="navbar-end">
         <div className="mr-4">
           <input
-             onChange={(e) => handleTheme(e.target.checked)}
+            onChange={(e) => handleTheme(e.target.checked)}
             type="checkbox"
             defaultChecked={localStorage.getItem("theme") === "dark"}
             className="toggle"
           />
         </div>
         {!user ? (
-          <Link to="/auth/login" className="btn">
-            Login
+          <Link
+            to="/auth/login"
+            className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white rounded-lg"
+          >
+            <MdLogin /> Login
           </Link>
         ) : (
           <div className="dropdown dropdown-end">
@@ -87,7 +102,7 @@ const Navbar = () => {
               className="btn btn-ghost btn-circle avatar tooltip tooltip-bottom"
               data-tip={user.displayName || "User"}
             >
-              <div className="w-10 rounded-full border border-gray-300">
+              <div className="w-9 md:w-10 mr-1 rounded-full border border-gray-300">
                 <img
                   src={
                     user.photoURL ||
@@ -112,12 +127,20 @@ const Navbar = () => {
               <li>
                 <Link to="/join-event">Joined Events</Link>
               </li>
+              <li className="lg:hidden">
+                <button
+                  onClick={signOutUser}
+                  className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] w-full text-white"
+                >
+                  <MdLogout /> Logout
+                </button>
+              </li>
             </ul>
             <button
               onClick={signOutUser}
-              className="btn btn-outline btn-error rounded-full text-sm ml-4"
+              className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] rounded-lg text-white text-sm ml-4 hidden lg:inline-flex"
             >
-              Logout
+              <MdLogout /> Logout
             </button>
           </div>
         )}

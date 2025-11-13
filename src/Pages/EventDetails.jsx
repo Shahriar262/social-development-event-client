@@ -79,20 +79,20 @@ const EventDetails = () => {
       />
       <h2 className="text-2xl font-bold mt-4">{event?.title}</h2>
       <p className="mt-2">
-        <strong>Description:</strong> {event?.description}
+        <strong>Description:</strong>  {event?.description}
       </p>
       <p className="mt-2">
-        <strong>Created By:</strong> {event?.createdBy}
+        <strong>Created By:</strong>  {event?.createdBy}
       </p>
       <p className="mt-2">
-        <strong>Location:</strong> {event?.location}
+        <strong>Location:</strong>  {event?.location}
       </p>
       <p className="mt-2">
         <strong>Date:</strong>{" "}
-        {new Date(event?.eventDate).toLocaleDateString("en-CA")}
+         {new Date(event?.eventDate).toLocaleDateString("en-CA")}
       </p>
       <p className="mt-2">
-        <strong>Type:</strong> {event?.eventType}
+        <strong>Event Type:</strong>  {event?.eventType}
       </p>
 
       <button
@@ -101,7 +101,7 @@ const EventDetails = () => {
         className={`mt-5 px-5 py-2 rounded-lg text-white w-full ${
           joining
             ? "bg-gray-400 cursor-not-allowed"
-            : "bg-green-600 hover:bg-green-700"
+            : "bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-gray-600 hover:to-gray-500"
         }`}
       >
         {joining ? "Joining..." : "Join Event"}

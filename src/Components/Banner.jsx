@@ -18,16 +18,16 @@ const Banner = () => {
 
   const banners = [
     {
-      img: "https://res.cloudinary.com/dtxtatusv/image/upload/v1763011849/Non-Profit-Fabric-Banner-Template-edit-online_aw34le.png",
+      img: "https://i.ibb.co.com/60t15z76/volunteering-illustration.webp",
       title: "Make a Difference Today",
     },
     {
-      img: "https://res.cloudinary.com/dtxtatusv/image/upload/v1763012629/tp39-ae-facebookad-03_e1fdyj.jpg",
+      img: "https://i.ibb.co.com/kgdWRXTR/istockphoto-1625310710-612x612.jpg",
       title: "Join Local Community Events",
     },
     {
-      img: "https://res.cloudinary.com/dtxtatusv/image/upload/v1763014442/International-Volunteer-Day-2023-1024x512_y7p4st.jpg",
-      title: "International volunteers day image",
+      img: "https://i.ibb.co.com/kgxXq7MR/how-do-i-find-local-volunteer-opportunities-1920w.webp",
+      title: "Be the Change You Want to See",
     },
   ];
 
@@ -39,31 +39,33 @@ const Banner = () => {
             <img
               src={b.img}
               alt={b.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fit md:object-cover"
             />
-            {/* <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 className="text-center text-white"
               >
-                <h1 className="text-4xl md:text-6xl font-bold">{b.title}</h1>
-                <button className="mt-6 px-6 py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-full">
+                <h1 className="text-2xl md:text-6xl font-bold">{b.title}</h1>
+                <button className="mt-6 px-6 py-3 bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-gray-600 hover:to-gray-500 cursor-pointer font-semibold text-white rounded-full">
                   Explore Events
                 </button>
               </motion.div>
-            </div> */}
+            </div>
           </div>
         ))}
       </Slider>
 
       <style jsx>{`
         .slick-dots li button:before {
-          color: gray; /* all dots color */
+          color: rgb(156 163 175); 
+          opacity: 1;
+          transition: color 0.3s ease;
         }
         .slick-dots li.slick-active button:before {
-          color: green; /* active dot color, Tailwind pink-500 */
+          color: blue; 
         }
       `}</style>
     </section>

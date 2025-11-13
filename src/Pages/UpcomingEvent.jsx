@@ -28,10 +28,8 @@ const UpcomingEvent = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     const text = search.toLowerCase();
-    const searchedText = events.filter(
-      (event) =>
-        event.title.toLowerCase().includes(text) ||
-        event.location.toLowerCase().includes(text)
+    const searchedText = events.filter((event) =>
+      event.title.toLowerCase().includes(text)
     );
 
     setFilteredEvents(searchedText);
@@ -69,16 +67,18 @@ const UpcomingEvent = () => {
         >
           <input
             type="search"
-            placeholder="Search by title or location"
+            placeholder="Search by title"
             className="input rounded-full focus:outline-none px-3"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          <button className="btn btn-secondary rounded-full">Search</button>
+          <button className="btn bg-purple-700 text-white hover:bg-purple-600 rounded-full">
+            Search
+          </button>
         </form>
 
         {/* Filter Dropdown */}
-        <div className="flex justify-center items-center gap-4">
+        <div className="flex justify-center items-center gap-4 mb-4 md:mb-0">
           <select
             className="select rounded-full"
             value={filterType}
@@ -93,7 +93,7 @@ const UpcomingEvent = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-7xl mx-auto px-4 md:px-0 lg:px-0 mt-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-3 max-w-7xl mx-auto px-4 md:px-0 lg:px-0 mt-10">
         {filteredEvents.length > 0 ? (
           filteredEvents.map((event) => (
             <EventCard key={event._id} event={event} />

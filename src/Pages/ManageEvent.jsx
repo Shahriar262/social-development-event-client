@@ -45,7 +45,7 @@ const ManageEvent = () => {
         {events.map((event) => (
           <div
             key={event._id}
-            className="bg-base-100 shadow-2xl rounded-xl p-4 flex flex-col justify-between"
+            className="bg-base-100 shadow-2xl rounded-xl p-4 flex flex-col justify-between hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
           >
             <img
               src={event.thumbnailUrl}
@@ -53,14 +53,17 @@ const ManageEvent = () => {
               className="w-full h-40 object-cover rounded-lg"
             />
             <h3 className="text-lg font-semibold mt-2">{event.title}</h3>
-            <p className="text-sm text-green-700">{event.location}</p>
-            <p className="text-sm text-pink-500 font-medium">
+            <p className="text-sm mt-2">
+              <strong>Location:</strong> {event.location}
+            </p>
+            <p className="text-sm font-medium mt-2">
+              <strong>Event Date:</strong>{" "}
               {new Date(event.eventDate).toLocaleDateString("en-CA")}
             </p>
 
             <button
               onClick={() => navigate(`/update-event/${event._id}`)}
-              className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+              className="mt-4 w-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2]  text-white py-2 rounded-lg hover:from-gray-600 hover:to-gray-500 cursor-pointer"
             >
               Update Event
             </button>

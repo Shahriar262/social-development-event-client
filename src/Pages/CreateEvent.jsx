@@ -61,7 +61,7 @@ const CreateEvent = () => {
   };
 
   return (
-    <div className="card bg-base-100 w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+    <div className="card bg-base-100 mt-10 w-[95%] md:w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
         <h2 className="text-2xl font-bold text-center mb-6">
           Create New Event
@@ -149,7 +149,7 @@ const CreateEvent = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="btn w-full text-white mt-6 rounded-full bg-linear-to-r from-pink-500 to-red-600 hover:from-pink-600 hover:to-red-700"
+            className="btn w-full text-white mt-6 rounded-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-gray-600 hover:to-gray-500 cursor-pointer"
           >
             {loading ? "Creating..." : "Add Event"}
           </button>

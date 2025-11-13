@@ -62,7 +62,7 @@ const Login = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
+            <button className="btn text-white mt-4 rounded-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-gray-600 hover:to-gray-500">
               Login
             </button>
           </fieldset>

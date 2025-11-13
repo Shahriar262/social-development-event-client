@@ -49,7 +49,6 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         toast.success("User created successfully!", { id: "create-user" });
-        // addUserTodb(result.user);
         navigate("/");
       })
       .catch((error) => {
@@ -58,29 +57,6 @@ const Register = () => {
       });
   };
 
-  //   const addUserTodb = async (user) => {
-  //     const userData = {
-  //       uid: user.uid,
-  //       displayName: user.displayName,
-  //       photoURL: user.photoURL,
-  //       email: user.email,
-  //     }
-  //     try {
-  //       const res = await fetch("https://m10-cs.vercel.app/users", {
-  //         method: "POST",
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //         body: JSON.stringify(userData),
-  //       });
-
-  //       const data = await res.json();
-
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
 
   return (
     <div className="card bg-base-100 border border-gray-200 w-full mx-auto max-w-sm shrink-0 shadow-2xl">
@@ -127,7 +103,7 @@ const Register = () => {
             <div>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button disabled={loading} className="btn text-white mt-4 rounded-full bg-linear-to-r from-pink-500 to-red-600">
+            <button disabled={loading} className="btn text-white mt-4 rounded-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-gray-600 hover:to-gray-500">
              {loading ? "Registering..." : "Register"}
             </button>
           </fieldset>
