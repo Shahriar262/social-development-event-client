@@ -62,7 +62,7 @@ const CreateEvent = () => {
 
 
   return (
-    <div className="card bg-base-100 mt-10 w-[95%] md:w-full max-w-md mx-auto shadow-2xl rounded-2xl">
+    <div className="card bg-base-100 mt-10 w-[94%] md:w-full max-w-md mx-auto shadow-2xl rounded-2xl">
       <div className="card-body p-6 relative">
         <h2 className="text-2xl font-bold text-center mb-6">
           Create New Event

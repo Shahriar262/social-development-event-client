@@ -65,7 +65,7 @@ const UpdateEvent = () => {
   if (!event) return <p className="text-center mt-10">Event not found</p>;
 
   return (
-    <div className="max-w-md w-[95%] md:w-full mx-auto mt-10 p-6 bg-base-100 shadow-2xl rounded-xl">
+    <div className="max-w-md w-[94%] md:w-full mx-auto mt-10 p-6 bg-base-100 shadow-2xl rounded-xl">
       <h2 className="text-2xl font-bold text-center mb-6">Update Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}

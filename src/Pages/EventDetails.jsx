@@ -72,7 +72,7 @@ const EventDetails = () => {
     return <p className="text-center mt-10 text-gray-600">Event not found</p>;
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 bg-base-100 shadow-2xl rounded-xl p-6">
+    <div className="max-w-3xl mx-auto w-[94%] md:w-full mt-10 bg-base-100 shadow-2xl rounded-xl p-6">
       <img
         src={event?.thumbnailUrl}
         alt={event?.title}
