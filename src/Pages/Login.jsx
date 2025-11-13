@@ -34,10 +34,12 @@ const Login = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
+        toast.success("Logged in with Google!");
         navigate(location?.state || "/");
       })
       .catch((error) => {
         console.log(error);
+        toast.error("Google login failed!");
       });
   };
 
