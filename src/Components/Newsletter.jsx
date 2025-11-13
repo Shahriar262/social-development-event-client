@@ -7,7 +7,7 @@ const Newsletter = () => {
       <motion.h2
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
         className="text-2xl md:text-3xl font-bold mb-4"
       >
         Subscribe to Our Newsletter

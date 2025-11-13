@@ -45,7 +45,7 @@ const Banner = () => {
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
                 className="text-center text-white"
               >
                 <h1 className="text-2xl md:text-6xl font-bold">{b.title}</h1>

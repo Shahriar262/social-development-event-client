@@ -23,6 +23,9 @@ const Gallery = () => {
             src={`/images/${img}`}
             alt={`Gallery ${index + 1}`}
             className="rounded-xl object-cover h-56 w-full shadow-sm"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.15 }}
             whileHover={{ scale: 1.05 }}
           />
         ))}

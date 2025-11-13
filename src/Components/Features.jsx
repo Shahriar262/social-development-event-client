@@ -25,7 +25,7 @@ const Features = () => {
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
         className="text-3xl font-bold mb-10"
       >
         Why Join Us?
@@ -36,6 +36,9 @@ const Features = () => {
           <motion.div
             key={i}
             whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: i * 0.2 }}
             className="p-6 bg-base-100 shadow-2xl rounded-2xl"
           >
             <div className="text-4xl mb-4">{f.icon}</div>
