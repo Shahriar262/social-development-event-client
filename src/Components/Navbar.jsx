@@ -1,9 +1,20 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
+  useEffect(()=> {
+    const html = document.querySelector("html")
+    html.setAttribute("data-theme", theme)
+    localStorage.setItem("theme", theme)
+  }, [theme])
+
+  const handleTheme = (checked)=>{
+    setTheme(checked ? "dark" : "light")
+  }
 
   return (
     <div className="navbar bg-base-100 shadow-sm md:px-[120px]">
@@ -57,6 +68,14 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
+        <div className="mr-4">
+          <input
+             onChange={(e) => handleTheme(e.target.checked)}
+            type="checkbox"
+            defaultChecked={localStorage.getItem("theme") === "dark"}
+            className="toggle"
+          />
+        </div>
         {!user ? (
           <Link to="/auth/login" className="btn">
             Login
@@ -93,10 +112,13 @@ const Navbar = () => {
               <li>
                 <Link to="/join-event">Joined Events</Link>
               </li>
-              <li>
-                <button onClick={signOutUser}>Logout</button>
-              </li>
             </ul>
+            <button
+              onClick={signOutUser}
+              className="btn btn-outline btn-error rounded-full text-sm ml-4"
+            >
+              Logout
+            </button>
           </div>
         )}
       </div>

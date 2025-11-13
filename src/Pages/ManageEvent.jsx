@@ -11,7 +11,9 @@ const ManageEvent = () => {
   useEffect(() => {
     if (!user?.email) return;
 
-    fetch(`http://localhost:5000/my-events?email=${user.email}`)
+    fetch(
+      `https://social-development-event-server-mu.vercel.app/my-events?email=${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setEvents(data.result || []);
@@ -43,7 +45,7 @@ const ManageEvent = () => {
         {events.map((event) => (
           <div
             key={event._id}
-            className="bg-white shadow-md rounded-xl p-4 flex flex-col justify-between"
+            className="bg-base-100 shadow-2xl rounded-xl p-4 flex flex-col justify-between"
           >
             <img
               src={event.thumbnailUrl}
@@ -51,7 +53,7 @@ const ManageEvent = () => {
               className="w-full h-40 object-cover rounded-lg"
             />
             <h3 className="text-lg font-semibold mt-2">{event.title}</h3>
-            <p className="text-sm text-gray-600">{event.location}</p>
+            <p className="text-sm text-green-700">{event.location}</p>
             <p className="text-sm text-pink-500 font-medium">
               {new Date(event.eventDate).toLocaleDateString("en-CA")}
             </p>

@@ -9,14 +9,14 @@ const UpcomingEvent = () => {
   const [filterType, setFilterType] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/events")
+    fetch("https://social-development-event-server-mu.vercel.app/events")
       .then((res) => res.json())
       .then((data) => {
         const upcomingEvent = data.filter(
           (event) => new Date(event.eventDate) >= new Date()
         );
         setEvents(upcomingEvent);
-        setFilteredEvents(upcomingEvent)
+        setFilteredEvents(upcomingEvent);
         setLoading(false);
       })
       .catch((err) => {
@@ -37,15 +37,15 @@ const UpcomingEvent = () => {
     setFilteredEvents(searchedText);
   };
 
-  const handleFilterByType = (type)=>{
-    setFilterType(type)
-    if(!type){
-      setFilteredEvents(events)
-    }else{
-      const filtered = events.filter((event)=> event.eventType === type)
-      setFilteredEvents(filtered)
+  const handleFilterByType = (type) => {
+    setFilterType(type);
+    if (!type) {
+      setFilteredEvents(events);
+    } else {
+      const filtered = events.filter((event) => event.eventType === type);
+      setFilteredEvents(filtered);
     }
-  }
+  };
 
   if (loading)
     return (
@@ -56,44 +56,48 @@ const UpcomingEvent = () => {
 
   return (
     <div>
-      <div className="text-2xl text-center font-bold mt-10">All Upcoming Events</div>
+      <div className="text-2xl text-center font-bold mt-10">
+        All Upcoming Events
+      </div>
       <p className=" text-center mt-2">Explore Upcoming Events.</p>
 
-     <div className="flex flex-col md:flex-row lg:flex-row justify-between items-center max-w-7xl mx-auto mb-[-40px] mt-8">
-       {/* Search Bar */}
-      <form
-        onSubmit={handleSearch}
-        className="text-center my-6 flex justify-center gap-2"
-      >
-        <input
-          type="search"
-          placeholder="Search by title or location"
-          className="input rounded-full focus:outline-none px-3"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
-        <button className="btn btn-secondary rounded-full">Search</button>
-      </form>
-
-      {/* Filter Dropdown */}
-      <div className="flex justify-center items-center gap-4">
-        <select
-          className="select rounded-full"
-          value={filterType}
-          onChange={(e) => handleFilterByType(e.target.value)}
+      <div className="flex flex-col md:flex-row lg:flex-row justify-between items-center max-w-7xl mx-auto mb-[-40px] mt-8">
+        {/* Search Bar */}
+        <form
+          onSubmit={handleSearch}
+          className="text-center my-6 flex justify-center gap-2"
         >
-          <option value="">Filter by Event Type</option>
-          <option value="Cleanup">Cleanup</option>
-          <option value="Plantation">Plantation</option>
-          <option value="Donation">Donation</option>
-          <option value="Other">Other</option>
-        </select>
+          <input
+            type="search"
+            placeholder="Search by title or location"
+            className="input rounded-full focus:outline-none px-3"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button className="btn btn-secondary rounded-full">Search</button>
+        </form>
+
+        {/* Filter Dropdown */}
+        <div className="flex justify-center items-center gap-4">
+          <select
+            className="select rounded-full"
+            value={filterType}
+            onChange={(e) => handleFilterByType(e.target.value)}
+          >
+            <option value="">Filter by Event Type</option>
+            <option value="Cleanup">Cleanup</option>
+            <option value="Plantation">Plantation</option>
+            <option value="Donation">Donation</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
       </div>
-     </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3 max-w-7xl mx-auto px-4 md:px-0 lg:px-0 mt-10">
         {filteredEvents.length > 0 ? (
-          filteredEvents.map((event) => <EventCard key={event._id} event={event} />)
+          filteredEvents.map((event) => (
+            <EventCard key={event._id} event={event} />
+          ))
         ) : (
           <p className="col-span-full text-center text-gray-500">
             No upcoming events available.

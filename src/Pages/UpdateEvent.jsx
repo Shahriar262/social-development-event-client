@@ -10,8 +10,7 @@ const UpdateEvent = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    
-    fetch(`http://localhost:5000/events/${id}`)
+    fetch(`https://social-development-event-server-mu.vercel.app/events/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setEvent(data.result);
@@ -33,13 +32,16 @@ const UpdateEvent = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:5000/events/${event._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `https://social-development-event-server-mu.vercel.app/events/${event._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
       if (data.success) {
@@ -57,7 +59,7 @@ const UpdateEvent = () => {
   if (!event) return <p className="text-center mt-10">Event not found</p>;
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 bg-white shadow rounded-xl">
+    <div className="max-w-md mx-auto mt-10 p-6 bg-base-100 shadow-2xl rounded-xl">
       <h2 className="text-2xl font-bold text-center mb-6">Update Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Title */}

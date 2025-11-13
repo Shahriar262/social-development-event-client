@@ -7,12 +7,12 @@ const EventDetails = () => {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [joining, setJoining] = useState(false);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/events/${id}`)
+    fetch(`https://social-development-event-server-mu.vercel.app/events/${id}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -26,12 +26,12 @@ const EventDetails = () => {
   const handleJoin = () => {
     if (!user?.email) {
       toast.error("You must logged in to join event!");
-      navigate("/auth/login")
+      navigate("/auth/login");
       return;
     }
     setJoining(true);
 
-    fetch("http://localhost:5000/join-event", {
+    fetch("https://social-development-event-server-mu.vercel.app/join-event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -43,21 +43,21 @@ const EventDetails = () => {
         eventLocation: event.location,
         thumbnailUrl: event.thumbnailUrl,
       }),
-    }).then(res => res.json())
-    .then((data) =>{
-        setJoining(false)
-        if(data.success){
-            toast.success("Successfully joined this event!")
-        }else{
-            toast.error(data.message || "Failed to join event.")
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setJoining(false);
+        if (data.success) {
+          toast.success("Successfully joined this event!");
+        } else {
+          toast.error(data.message || "Failed to join event.");
         }
-    }) .catch((err) => {
+      })
+      .catch((err) => {
         setJoining(false);
         toast.error("Something went wrong. Try again!");
         console.error(err);
       });
-
-
   };
 
   if (loading)
@@ -71,7 +71,7 @@ const EventDetails = () => {
     return <p className="text-center mt-10 text-gray-600">Event not found</p>;
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 bg-white shadow rounded-xl p-6">
+    <div className="max-w-3xl mx-auto mt-10 bg-base-100 shadow-2xl rounded-xl p-6">
       <img
         src={event?.thumbnailUrl}
         alt={event?.title}
@@ -99,7 +99,9 @@ const EventDetails = () => {
         onClick={handleJoin}
         disabled={joining}
         className={`mt-5 px-5 py-2 rounded-lg text-white w-full ${
-          joining ? "bg-gray-400 cursor-not-allowed" : "bg-green-600 hover:bg-green-700"
+          joining
+            ? "bg-gray-400 cursor-not-allowed"
+            : "bg-green-600 hover:bg-green-700"
         }`}
       >
         {joining ? "Joining..." : "Join Event"}

@@ -36,7 +36,7 @@ const CreateEvent = () => {
       eventDate: eventDate.toISOString(),
     };
 
-    fetch("http://localhost:5000/events", {
+    fetch("https://social-development-event-server-mu.vercel.app/events", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -109,7 +109,7 @@ const CreateEvent = () => {
             ></textarea>
           </div>
 
-           <div>
+          <div>
             <label className="label font-medium">Location</label>
             <input
               type="text"
@@ -120,7 +120,6 @@ const CreateEvent = () => {
             />
           </div>
 
-          
           {/* event date */}
           <div>
             <label className="label font-medium">Event Date</label>

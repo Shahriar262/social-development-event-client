@@ -8,13 +8,15 @@ const JoinedEvent = () => {
 
   useEffect(() => {
     if (!user?.email) return;
-    fetch(`http://localhost:5000/join-event/${user.email}`)
+    fetch(
+      `https://social-development-event-server-mu.vercel.app/join-event/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        
+
         if (data.success) {
-          setJoinedEvents(data.joinedEvents); 
+          setJoinedEvents(data.joinedEvents);
         }
         setLoading(false);
       })
@@ -50,9 +52,18 @@ const JoinedEvent = () => {
               className="w-full h-40 object-cover rounded-lg"
             />
             <h3 className="text-lg font-semibold mt-2">{event.eventTitle}</h3>
-            <p className="text-sm font-bold mt-2">Joined by: <span className="font-medium">{event.userEmail}</span></p>
-            <p className="text-sm font-bold mt-2">Location: <span className="font-medium">{event.eventLocation}</span></p>
-            <p className="text-sm font-bold mt-2">Joined at: <span className="font-medium">{new Date(event.joinedAt).toLocaleDateString("en-CA")}</span>
+            <p className="text-sm font-bold mt-2">
+              Joined by: <span className="font-medium">{event.userEmail}</span>
+            </p>
+            <p className="text-sm font-bold mt-2">
+              Location:{" "}
+              <span className="font-medium">{event.eventLocation}</span>
+            </p>
+            <p className="text-sm font-bold mt-2">
+              Joined at:{" "}
+              <span className="font-medium">
+                {new Date(event.joinedAt).toLocaleDateString("en-CA")}
+              </span>
             </p>
           </div>
         ))}

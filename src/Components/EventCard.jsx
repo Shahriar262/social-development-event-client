@@ -15,7 +15,7 @@ const EventCard = ({ event }) => {
 
   return (
     <div>
-      <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-[430px] flex flex-col">
+      <div className="card bg-base-100 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:-translate-y-2 h-[430px] flex flex-col">
         {/* fixed image container */}
         <figure className="w-full aspect-[16/9] overflow-hidden">
           <img
@@ -27,7 +27,7 @@ const EventCard = ({ event }) => {
 
         <div className="card-body flex flex-col justify-between">
           <div>
-            <h2 className="card-title mb-3 text-base">{title}</h2>
+            <h2 className="card-title mb-3 ">{title}</h2>
 
            
               <span className="px-3 py-0.5 text-xs font-medium bg-pink-100 text-pink-600 rounded-full">
