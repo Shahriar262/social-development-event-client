@@ -40,7 +40,7 @@ const Features = () => {
           >
             <div className="text-4xl mb-4">{f.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{f.title}</h3>
-            <p className="text-gray-600">{f.desc}</p>
+            <p>{f.desc}</p>
           </motion.div>
         ))}
       </div>
