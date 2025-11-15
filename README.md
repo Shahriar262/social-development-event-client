@@ -2,6 +2,8 @@
 
 **Live Site:** 🔗 [https://social-event-client-shahriar262.netlify.app/](https://social-event-client-shahriar262.netlify.app/)
 
+**Live Site:** 🔗 [https://social-development-event-shahriar262.pages.dev/](https://social-development-event-shahriar262.pages.dev/)
+
 
 
 ## 📝 About the Project  
