@@ -35,11 +35,11 @@ const Banner = () => {
     <section className="w-full relative">
       <Slider {...settings}>
         {banners.map((b, i) => (
-          <div key={i} className="relative h-[52vh] md:h-[80vh]">
+          <div key={i} className="relative h-[48vh] md:h-[80vh]">
             <img
               src={b.img}
               alt={b.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover [@media(max-width:380px)]:object-contain"
             />
             <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
               <motion.div
