@@ -35,7 +35,7 @@ const Banner = () => {
     <section className="w-full relative">
       <Slider {...settings}>
         {banners.map((b, i) => (
-          <div key={i} className="relative h-[48vh] md:h-[80vh]">
+          <div key={i} className="relative h-[48vh] md:h-[80vh] [@media(max-width:380px)]:h-auto">
             <img
               src={b.img}
               alt={b.title}
