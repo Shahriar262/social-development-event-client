@@ -39,7 +39,7 @@ const Banner = () => {
             <img
               src={b.img}
               alt={b.title}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-fill md:object-cover"
             />
             <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
               <motion.div
