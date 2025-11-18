@@ -1,6 +1,12 @@
 # 🚀 ServeBangla — Social Development Events Platform
 
-![Project Home Page](https://i.ibb.co.com/W4X1DMR8/social-development-event-shahriar262-pages-dev-2.png) 
+![GitHub repo size](https://img.shields.io/github/repo-size/Shahriar262/social-development-event-client?style=for-the-badge) 
+![GitHub contributors](https://img.shields.io/github/contributors/Shahriar262/social-development-event-client?style=for-the-badge) 
+![GitHub stars](https://img.shields.io/github/stars/Shahriar262/social-development-event-client?style=for-the-badge)
+![GitHub forks](https://img.shields.io/github/forks/Shahriar262/social-development-event-client?style=for-the-badge)
+![GitHub issues](https://img.shields.io/github/issues/Shahriar262/social-development-event-client?style=for-the-badge)
+![License](https://img.shields.io/github/license/Shahriar262/social-development-event-client?style=for-the-badge)
+ 
 
 
 ---
