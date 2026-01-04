@@ -14,7 +14,7 @@
 ServeBangla is a **community-driven platform** where users can create, join, and manage social service events across Bangladesh, such as Cleanup Drives, Tree Plantation, and Donation Programs.  
 Our mission is to connect volunteers and promote local initiatives to make society cleaner, greener, and better.
 
-**🌐 Live Demo:**  [https://social-development-event-shahriar262.pages.dev/](https://social-development-event-shahriar262.pages.dev/)
+**🌐 Live Demo:**  [https://social-event-client-shahriar262.netlify.app/](https://social-development-event-shahriar262.pages.dev/)
 
 ---
 
