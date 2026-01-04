@@ -9,7 +9,7 @@ const MainLayOut = () => {
     <div className="overflow-hidden">
       
         <Navbar />
-        <div className="mt-4">
+        <div className="mt-20">
           <Outlet />
         </div>
         <Footer />

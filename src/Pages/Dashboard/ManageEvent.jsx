@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 import { useNavigate } from "react-router";
 
 const ManageEvent = () => {
@@ -42,7 +42,7 @@ const ManageEvent = () => {
       <h2 className="text-2xl font-bold text-center mb-6">
         Manage Your Events
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {events.map((event) => (
           <div
             key={event._id}
@@ -66,7 +66,7 @@ const ManageEvent = () => {
             </p>
 
             <button
-              onClick={() => navigate(`/update-event/${event._id}`)}
+              onClick={() => navigate(`/dashboard/update-event/${event._id}`)}
               className="mt-4 w-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2]  text-white py-2 rounded-lg hover:from-gray-600 hover:to-gray-500 cursor-pointer"
             >
               Update Event

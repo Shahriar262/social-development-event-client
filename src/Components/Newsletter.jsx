@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 const Newsletter = () => {
   return (
-    <section className="py-16 max-w-7xl mx-[20px] md:mx-[140px] rounded-lg bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white text-center">
+    <section className="py-16 max-w-7xl mx-[20px] md:mx-auto rounded-lg bg-gradient-to-r from-[#632EE3] to-[#9F62F2] text-white text-center">
       <motion.h2
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

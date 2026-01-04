@@ -3,13 +3,17 @@ import MainLayOut from "../Layout/MainLayOut";
 import Home from "../Pages/Home";
 import UpcomingEvent from "../Pages/UpcomingEvent";
 import CreateEvent from "../Pages/CreateEvent";
-import JoinedEvent from "../Pages/JoinedEvent";
-import ManageEvent from "../Pages/ManageEvent";
+import JoinedEvent from "../Pages/Dashboard/JoinedEvent";
+import ManageEvent from "../Pages/Dashboard/ManageEvent";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import EventDetails from "../Pages/EventDetails";
-import UpdateEvent from "../Pages/UpdateEvent";
 import PrivateRoute from "./PrivateRoute";
+import DashboardHome from "../Pages/Dashboard/DashboardHome";
+import Profile from "../Pages/Dashboard/Profile";
+import DashboardLayout from "../Layout/DashboardLayout";
+import UpdateEvent from "../Pages/Dashboard/UpdateEvent";
+import About from "../Pages/About";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +29,10 @@ export const router = createBrowserRouter([
         element: <UpcomingEvent />,
       },
       {
+        path: "/about",
+        element: <About />,
+      },
+      {
         path: "/create-event",
         element: (
           <PrivateRoute>
@@ -32,34 +40,12 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/join-event",
-        element: (
-          <PrivateRoute>
-            <JoinedEvent />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/event-details/:id",
         element: <EventDetails />,
       },
-      {
-        path: "/update-event/:id",
-        element: (
-          <PrivateRoute>
-            <UpdateEvent />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/manage-event",
-        element: (
-          <PrivateRoute>
-            <ManageEvent />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/auth/login",
         element: <Login />,
@@ -68,6 +54,22 @@ export const router = createBrowserRouter([
         path: "/auth/register",
         element: <Register />,
       },
+    ],
+  },
+
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      { path: "", element: <DashboardHome /> },
+      { path: "profile", element: <Profile /> },
+      { path: "joined-events", element: <JoinedEvent /> },
+      { path: "manage-events", element: <ManageEvent /> },
+      { path: "update-event/:id", element: <UpdateEvent /> },
     ],
   },
 ]);

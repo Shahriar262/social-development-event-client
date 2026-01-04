@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
-import { FaHome } from "react-icons/fa";
-import { MdLogin, MdLogout, MdUpcoming } from "react-icons/md";
+import { MdLogin, MdLogout, MdOutlineUpcoming } from "react-icons/md";
 import logoImg from "../assets/logo.png";
 import { toast } from "react-toastify";
+import { IoAddCircleOutline, IoHomeOutline } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const Navbar = () => {
     setTheme(checked ? "dark" : "light");
   };
 
-   const handleLogout = () => {
+  const handleLogout = () => {
     signOutUser()
       .then(() => {
         toast.success("Logged out successfully!");
@@ -31,7 +31,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm md:px-[120px]">
+    <div className="navbar bg-base-100 shadow-sm md:px-[120px] fixed top-0 left-0 w-full z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -62,6 +62,10 @@ const Navbar = () => {
             <li>
               <Link to={"/upcoming-event"}>Upcoming Events</Link>
             </li>
+
+            <li>
+              <Link to={"/create-event"}>Create Event</Link>
+            </li>
           </ul>
         </div>
         <div className="flex items-center gap-2">
@@ -70,22 +74,28 @@ const Navbar = () => {
             className="w-8 h-8 md:w-9 md:h-9 rounded-full"
             alt=""
           />
-          <a className="md:text-xl font-bold">
+          <Link to="/" className="md:text-xl font-bold">
             Serve<span className="text-purple-700">Bangla</span>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link to={"/"} className="font-semibold text-[15px] mr-2">
-              <FaHome /> Home
+              <IoHomeOutline /> Home
             </Link>
           </li>
 
           <li>
             <Link to={"/upcoming-event"} className="font-semibold text-[15px]">
-              <MdUpcoming /> Upcoming Events
+              <MdOutlineUpcoming /> Upcoming Events
+            </Link>
+          </li>
+          <li>
+            <Link to="/create-event" className="font-semibold text-[15px]">
+              {" "}
+              <IoAddCircleOutline /> Create Event
             </Link>
           </li>
         </ul>
@@ -130,15 +140,12 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link to="/create-event">Create Event</Link>
+                <Link to="/dashboard/manage-events">Manage Events</Link>
               </li>
               <li>
-                <Link to="/manage-event">Manage Events</Link>
+                <Link to="/dashboard/joined-events">Joined Events</Link>
               </li>
-              <li>
-                <Link to="/join-event">Joined Events</Link>
-              </li>
-              <li className="lg:hidden">
+              <li className="">
                 <button
                   onClick={handleLogout}
                   className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] w-full text-white"
@@ -147,12 +154,6 @@ const Navbar = () => {
                 </button>
               </li>
             </ul>
-            <button
-              onClick={handleLogout}
-              className="btn bg-gradient-to-r from-[#632EE3] to-[#9F62F2] rounded-lg text-white text-sm ml-4 hidden lg:inline-flex"
-            >
-              <MdLogout /> Logout
-            </button>
           </div>
         )}
       </div>

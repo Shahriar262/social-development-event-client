@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import logoImg from "../assets/logo.png";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
@@ -34,12 +35,12 @@ const Footer = () => {
               </a>
             </li>
             <li>
-              <a
-                href="/upcoming-event"
+              <Link
+                to="/about"
                 className="hover:text-blue-400 transition-colors"
               >
-                Upcoming Events
-              </a>
+                About
+              </Link>
             </li>
             <li>
               <a
@@ -49,14 +50,7 @@ const Footer = () => {
                 Create Event
               </a>
             </li>
-            <li>
-              <a
-                href="/manage-event"
-                className="hover:text-blue-400 transition-colors"
-              >
-                Manage Events
-              </a>
-            </li>
+            
           </ul>
         </div>
 

@@ -41,7 +41,7 @@ const Banner = () => {
               alt={b.title}
               className="w-full h-full object-fill md:object-cover"
             />
-            <div className="absolute inset-0 bg-black/45 flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/57 flex items-center justify-center">
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}

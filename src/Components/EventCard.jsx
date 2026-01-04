@@ -1,63 +1,60 @@
 import React from "react";
-import { IoLocationOutline } from "react-icons/io5";
 import { Link } from "react-router";
+import { IoLocationOutline, IoCalendarOutline } from "react-icons/io5";
 
 const EventCard = ({ event }) => {
   const {
     title,
     thumbnailUrl,
-    eventType,
     _id,
     createdBy,
     eventDate,
     location,
+    eventType,
   } = event;
 
   return (
-    <div>
-      <div className="card bg-base-100 shadow-2xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 h-[440px] flex flex-col">
-        
-        <figure className="w-full aspect-[16/9] overflow-hidden">
-          <img
-            src={thumbnailUrl}
-            alt={title}
-            className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
-          />
-        </figure>
+    <div className="bg-base-100 shadow-md rounded-xl overflow-hidden flex flex-col h-full hover:shadow-xl transition-transform duration-300 hover:-translate-y-1">
+      {/* Image */}
+      <div className="w-full h-48 md:h-56 overflow-hidden">
+        <img
+          src={thumbnailUrl}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+        />
+      </div>
 
-        <div className="card-body flex flex-col justify-between">
-          <div>
-            <h2 className="font-bold text-[17.6px] mb-3 ">{title}</h2>
+      {/* Content */}
+      <div className="p-4 flex flex-col flex-1 justify-between">
+        <div>
+          {/* Title */}
+          <h2 className="font-semibold text-lg truncate">{title}</h2>
 
-           
-              <span className="px-3 py-0.5 text-xs font-medium bg-purple-100 text-purple-700 rounded-full">
-                {eventType}
-              </span>
-              <span className="flex items-center gap-1 px-3 py-1 mt-3 text-xs font-medium bg-gray-100 text-gray-600 rounded-full max-w-[80%] truncate">
-                <IoLocationOutline className="text-gray-500" />
-                {location}
-              </span>
-            
-
-            <div className="text-xs mt-3">
-              Added By: <b>{createdBy}</b>
-            </div>
-
-            <div className="text-xs mt-3">
-              Event Date: <b>{new Date(eventDate).toLocaleDateString("en-CA")}</b>
-            </div>
-
-            
+          {/* Meta Info */}
+          <div className="flex flex-wrap gap-2 mt-3 text-gray-600 text-xs">
+            <span className="px-2 py-0.5 rounded-full bg-purple-100 text-purple-700">
+              {eventType}
+            </span>
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100">
+              <IoLocationOutline className="text-gray-500" /> {location}
+            </span>
+            <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-gray-100">
+              <IoCalendarOutline className="text-gray-500" />{" "}
+              {new Date(eventDate).toLocaleDateString("en-CA")}
+            </span>
           </div>
 
-          <div className="card-actions justify-end mt-2">
-            <Link to={`/event-details/${_id}`}
-              className="btn rounded-full bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-purple-600 hover:to-pink-500 text-white w-full btn-sm"
-            >
-              View Event
-            </Link>
-          </div>
+          {/* Created By */}
+          <div className="text-xs mt-2">Added by: {createdBy}</div>
         </div>
+
+        {/* View Details Button */}
+        <Link
+          to={`/event-details/${_id}`}
+          className="mt-4 w-full text-center bg-gradient-to-r from-[#632EE3] to-[#9F62F2] hover:from-purple-600 hover:to-pink-500 text-white rounded-full py-2 text-sm transition-all duration-300"
+        >
+          View Details
+        </Link>
       </div>
     </div>
   );

@@ -3,6 +3,11 @@ import Banner from "../Components/Banner";
 import Features from "../Components/Features";
 import Gallery from "../Components/Gallery";
 import Newsletter from "../Components/Newsletter";
+import Categories from "../Components/Categories";
+import Highlights from "../Components/Highlights";
+import FAQ from "../Components/FAQ";
+import Testimonials from "../Components/Testimonials";
+import Statistics from "../Components/Statistics";
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -28,6 +33,21 @@ const Home = () => {
       <Features />
       <Gallery />
       <Newsletter />
+      <div className="mt-20">
+        <Categories />
+      </div>
+      <div className="mt-20">
+        <Highlights />
+      </div>
+      <div className="mt-20">
+        <Statistics />
+      </div>
+      <div className="mt-20">
+        <Testimonials />
+      </div>
+      <div className="mt-20">
+        <FAQ />
+      </div>
     </div>
   );
 };

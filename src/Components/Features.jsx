@@ -21,7 +21,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-16 text-center">
+    <section className="max-w-7xl mx-auto px-4 md:px-0 py-16 text-center">
       <motion.h2
         initial={{ opacity: 0, y: -30 }}
         whileInView={{ opacity: 1, y: 0 }}

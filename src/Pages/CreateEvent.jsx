@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from "react-toastify";
+import { imgUpload } from "../utils";
 
 const CreateEvent = () => {
   const { user } = useContext(AuthContext);
@@ -11,7 +12,7 @@ const CreateEvent = () => {
   const [eventDate, setEventDate] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!user?.email) {
@@ -24,40 +25,55 @@ const CreateEvent = () => {
       return;
     }
 
-    setLoading(true);
+    const imageFile = e.target.image.files[0];
+    if (!imageFile) {
+      toast.error("Please select an image!");
+      return;
+    }
 
-    const formData = {
-      title: e.target.title.value,
-      eventType: e.target.eventType.value,
-      description: e.target.description.value,
-      thumbnailUrl: e.target.thumbnailUrl.value,
-      createdBy: user?.email,
-      location: e.target.location.value,
-      eventDate: eventDate.toISOString(),
-    };
+    try {
+      setLoading(true);
 
-    fetch("https://social-development-event-server-mu.vercel.app/events", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setLoading(false);
-        if (data.insertedId || data.success) {
-          toast.success("Event created successfully!");
-          navigate("/upcoming-event");
-          return;
+      // 1. Upload image to ImgBB
+      const imageUrl = await imgUpload(imageFile);
+
+      // 2. Prepare event data
+      const formData = {
+        title: e.target.title.value,
+        eventType: e.target.eventType.value,
+        description: e.target.description.value,
+        thumbnailUrl: imageUrl, 
+        createdBy: user.email,
+        location: e.target.location.value,
+        eventDate: eventDate.toISOString(),
+      };
+
+      // 3. Send data to backend using fetch
+      const res = await fetch(
+        "https://social-development-event-server-mu.vercel.app/events",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         }
+      );
 
-        toast.error("Failed to create event. Try again!");
-      })
-      .catch((error) => {
-        setLoading(false);
-        toast.error(error.message);
-      });
+      const data = await res.json();
+
+      setLoading(false);
+
+      if (data.insertedId || data.success) {
+        toast.success("Event created successfully!");
+        navigate("/upcoming-event");
+      } else {
+        toast.error("Failed to create event!");
+      }
+    } catch (error) {
+      setLoading(false);
+      toast.error(error.message || "Something went wrong!");
+    }
   };
 
 
@@ -135,16 +151,32 @@ const CreateEvent = () => {
             />
           </div>
 
-          {/* Thumbnail URL */}
+          {/* Add Image */}
           <div>
-            <label className="label font-medium">Thumbnail URL</label>
+            <label
+              htmlFor="image"
+              className="block mb-2 text-sm font-medium"
+            >
+              Add Image
+            </label>
             <input
-              type="url"
-              name="thumbnailUrl"
-              required
-              className="input w-full rounded-full focus:border-0 focus:outline-gray-200"
-              placeholder="https://example.com/image.jpg"
+              id="image"
+              name="image"
+              type="file"
+              accept="image/*"
+              className="block w-full text-sm text-gray-500
+                file:mr-4 file:py-2 file:px-4
+                file:rounded-md file:border-0
+                file:text-sm file:font-semibold
+                file:bg-indigo-50 file:text-purple-700 
+                hover:file:bg-indigo-100
+                bg-gray-100 border border-dashed border-indigo-300 rounded-md cursor-pointer
+                focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-purple-400
+                py-2"
             />
+            <p className="mt-1 text-xs text-gray-400">
+              PNG, JPG or JPEG (max 2MB)
+            </p>
           </div>
 
           {/* Submit Button */}
