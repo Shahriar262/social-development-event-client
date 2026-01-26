@@ -31,8 +31,8 @@ Our mission is to connect volunteers and promote local initiatives to make socie
 ## 🛠️ Technology Stack
 
 - **Frontend:** React, Tailwind CSS, DaisyUI
-- **Backend:** Firebase (Auth & Database)
-- **Database:** Firebase Firestore
+- **Backend:** Node.js, Express.js ,Firebase(Authentication)
+- **Database:** MongoDB
 - **Other Tools:** Vite, React Router, React Icons
 
 ---
